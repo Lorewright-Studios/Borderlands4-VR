@@ -1,0 +1,71 @@
+BORDERLANDS 4 IN VR (UEVR) - FULL INSTALL PACKAGE - 2026-11-03
+================================================================
+Gun renders in VR and follows your right hand, shots go where you point, firing never moves the
+camera, and the ECHO menu (map / skills / inventory / customization) works. Co-op works.
+
+WHAT YOU NEED
+- Windows PC with a VR-capable GPU (tested on RTX-class cards), Borderlands 4 installed through Steam.
+- A PC VR headset with an OpenXR runtime running BEFORE you launch:
+    Meta Quest: Meta Quest Link app (cable or Air Link)      - or -
+    Steam Link / Virtual Desktop / SteamVR (set it as the active OpenXR runtime in its settings).
+- Nothing else. This package contains the launcher app and the exact UEVR build it was tested with.
+
+STEP 1 - COPY THE LAUNCHER
+1. Copy the folder  UEVR_AutoInject  from this package somewhere permanent, e.g.
+       C:\Users\<you>\UEVR_AutoInject
+   Keep everything inside it together (the UEVR build lives in UEVR-Versions\lorewright\...).
+2. If Windows SmartScreen / your antivirus complains about UEVRAutoInject.exe or UEVRBackend.dll, choose
+   "Run anyway" or add the folder to the antivirus exclusions. VR injectors get flagged because they inject
+   a DLL into the game; the official UEVR project gives the same advice.
+
+STEP 2 - IMPORT THE GAME PROFILE (once)
+1. Start UEVRAutoInject.exe.
+2. Press F7 ("Import profile") and choose  Borderlands4.zip  from this package.
+   It is installed to  %APPDATA%\UnrealVRMod\Borderlands4  (config + 3 scripts + data).
+   (UEVR's own injector accepts the same zip through "Import Config".)
+
+STEP 3 - ONE GAME SETTING
+Start the game once (flat is fine) and in  Options > Visuals  set  Depth of Field = Disabled.
+(With it on, one eye fills with magenta blobs in some rendering modes. The game remembers the setting.)
+
+STEP 4 - PLAY
+1. Headset runtime running, headset awake. Open UEVRAutoInject.exe, pick "Borderlands 4" in the list.
+2. The UEVR version on the right must read:
+       UEVR Lorewright build - bl4menu-v3-856b490 (uevr.zip) - installed
+   (pre-selected). This exact build contains the menu fix; other UEVR builds will split the ECHO menu
+   between the eyes.
+3. Wait time is pre-set to 60 seconds (the game needs to get past its intro movies).
+4. Press PLAY IN VR (Ctrl+Enter). The app launches the game through Steam, waits, then injects.
+   Insert opens UEVR's own in-game menu if you ever need it.
+
+CONTROLS (Quest Touch, Xbox layout emulated by UEVR)
+- Right controller aims the gun. Press any button to wake the controllers after a pause.
+- Left menu button LONG press = ECHO menu (map / skills / inventory / customization).
+- Start = pause / settings menu.
+
+WHAT THE PROFILE DOES (scripts in %APPDATA%\UnrealVRMod\Borderlands4\scripts)
+- BL4_GunFix.lua       pulls the equipped weapon + muzzle FX out of Gearbox's "foreground" render pass so it
+                       draws in VR, and attaches it to the right controller (re-attaches on weapon swap).
+                       The first-person arms stay hidden on purpose (showing them caused a right-eye flicker).
+- BL4_RecoilFix.lua    cancels the per-shot camera kick, pins camera yaw/roll and freezes camera position
+                       while firing, so shooting never shakes or rotates your view.
+- CutsceneAndMenuDetection.lua   community script + our changes: while the ECHO/pause menu is open it
+                       switches UEVR to Native Stereo + 2D screen with the Lorewright build's "whole image in
+                       both eyes" option; restores Synchronized Sequential on close. Also forces the correct
+                       gameplay settings on every launch (UEVR otherwise saves whatever was live at exit).
+- Rendering: Synchronized Sequential (clean image, no per-eye artifacts; costs more GPU than Native Stereo).
+  Native Stereo also works and is smoother on weaker GPUs, but loot rarity glows render with the wrong color
+  in one eye - set  gameplayRenderingMethod = "0"  in CutsceneAndMenuDetection.lua if you prefer it.
+
+TIPS
+- Co-op: every player in the session must run this profile (an old, stuttering script on the HOST breaks
+  the clients' vertical aim).
+- Turning OFF controller vibration in the game's options reduces controller-tracking jitter while firing.
+- Script settings:  data\BL4GunFix.json  (attach_hand: 1 = right, 0 = left),  data\BL4RecoilFix.json.
+- Problems? Send  %APPDATA%\UnrealVRMod\Borderlands4\log.txt  (overwritten every launch).
+
+CREDITS
+- UEVR by praydog; this package ships a build of joeyhodge's UEVR fork with a small addition
+  (source: https://github.com/Lorewright-Studios/UEVR, branch bl4-menu-fullsource).
+- Launcher: UEVR Auto Inject by Lorewright Studios.
+- Profile scripts by Lorewright Studios (David Grosso), with Claude.

@@ -1,0 +1,14 @@
+{
+  "arms_search_interval": 3.0,
+  "attach_hand": 1,
+  "attach_weapon": true,
+  "check_interval": 0.25,
+  "fix_foreground": true,
+  "verbose": false,
+  "weapon_loc_x": 0.0,
+  "weapon_loc_y": 0.0,
+  "weapon_loc_z": 0.0,
+  "weapon_rot_pitch": 0.0,
+  "weapon_rot_roll": 0.0,
+  "weapon_rot_yaw": 0.0
+}
