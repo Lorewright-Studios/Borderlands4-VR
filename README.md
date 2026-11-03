@@ -29,13 +29,13 @@ Already have UEVR? You need the **Lorewright UEVR build** (joeyhodge's fork plus
 | `profile/` | The UEVR profile as installed to `%APPDATA%\UnrealVRMod\Borderlands4` (config + scripts + data) |
 | `profile/scripts/BL4_GunFix.lua` | Pulls the equipped weapon + FX out of Gearbox's "GbxForeground" render pass (which UEVR cannot draw per eye) and attaches it to the right controller |
 | `profile/scripts/BL4_RecoilFix.lua` | Cancels the per-shot control-rotation kick, pins camera yaw/roll, freezes camera position while firing |
-| `profile/scripts/CutsceneAndMenuDetection.lua` | Community script + our additions: menu rendering mode switch, startup guard |
+| `profile/scripts/CutsceneAndMenuDetection.lua` | Community script + my additions: menu rendering mode switch, startup guard |
 | `INSTALL.txt` | Step-by-step install |
 | `docs/TECHNICAL.md` | Root causes, what was tried, what failed, engine facts |
 
 ## The UEVR build
 
-The profile needs the `VR_2DScreenFullSource` option, which lives in our branch of joeyhodge's fork:
+The profile needs the `VR_2DScreenFullSource` option, which lives in my branch of joeyhodge's fork:
 **https://github.com/Lorewright-Studios/UEVR** (branch `bl4-menu-fullsource`). The ECHO menu draws itself once across UEVR's double-wide stereo buffer; this option makes the 2D screen show that whole image to both eyes while the menu is open, with the eyes sized so the menu keeps normal proportions. It is off by default and the script turns it on only while a menu is open. The full-install zip ships a prebuilt copy.
 
 ## Known issues
@@ -49,5 +49,5 @@ The profile needs the `VR_2DScreenFullSource` option, which lives in our branch 
 
 - [UEVR](https://github.com/praydog/UEVR) by praydog; [joeyhodge's fork](https://github.com/joeyhodge/UEVR) for UE 5.5 support including Borderlands 4's Slate UI path.
 - `CutsceneAndMenuDetection.lua` is based on the community script of the same name.
-- Launcher: [UEVR Auto Inject](https://github.com/Lorewright-Studios/UEVR-AutoInject) by Lorewright Studios.
-- Profile, scripts and the UEVR change: Lorewright Studios (David Grosso), built with Claude.
+- Launcher: [UEVR Auto Inject](https://github.com/Lorewright-Studios/UEVR-AutoInject), also mine.
+- Profile, scripts and the UEVR change: David Grosso (Lorewright Studios).

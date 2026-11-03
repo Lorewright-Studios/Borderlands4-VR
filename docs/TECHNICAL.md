@@ -1,6 +1,6 @@
 # Technical notes — Borderlands 4 + UEVR
 
-Collected while building the profile (Oct 31 – Nov 3, 2026). Setup: joeyhodge UEVR fork (UE 5.5 support, BL4 Slate UI routing), OpenXR, Meta Quest 3.
+Notes I collected while building the profile (Oct 31 – Nov 3, 2026). Setup: joeyhodge UEVR fork (UE 5.5 support, BL4 Slate UI routing), OpenXR, Meta Quest 3.
 
 ## Invisible gun / arms → Gearbox's `GbxForeground` pass
 Borderlands 4 does **not** use Epic's UE 5.5 first-person primitive system (`bUseFirstPersonParameters=false`, zero components flagged). Gearbox's engine renders arms, weapon and muzzle FX in its own `GbxForeground` pass with a second projection matrix (`GbxForegroundProjectionMatrix`, +0x1E0 in the view init data). UEVR never rewrites that matrix per eye, so the pass never lands in the eye buffers.
@@ -17,7 +17,7 @@ With Synchronized Sequential the ECHO menu deadlocked the game thread (`[OpenXR]
 
 What failed: Extreme Compatibility Mode at runtime (textures not rebuilt → `Failed to close command list`; sequenced through Native it rebuilt but froze the renderer on leaving); un-foregrounding menu props (nothing in the menu is in the foreground pass); forcing one view into a single-width target (crashed on menu open).
 
-What works (`VR_2DScreenFullSource` in our UEVR branch): in 2D Screen mode copy the **entire** double-wide render into each eye's screen (aspect-fit), and size each eye at **half the window width** so the combined buffer has the window's aspect and the menu lays out normally. Menu script: on menu open set Native Stereo + 2D Screen + FullSource; on close restore. UEVR saves live option values at exit, so the script also forces the gameplay values on every launch (quitting from the pause menu used to save head-aim / roomscale-off / 2D-screen state).
+What works (`VR_2DScreenFullSource` in my UEVR branch): in 2D Screen mode copy the **entire** double-wide render into each eye's screen (aspect-fit), and size each eye at **half the window width** so the combined buffer has the window's aspect and the menu lays out normally. Menu script: on menu open set Native Stereo + 2D Screen + FullSource; on close restore. UEVR saves live option values at exit, so the script also forces the gameplay values on every launch (quitting from the pause menu used to save head-aim / roomscale-off / 2D-screen state).
 
 ## Native Stereo
 Works for gameplay once **Depth of Field is disabled** in the game (its bokeh sprites render magenta in the second eye). Remaining defect: loot rarity glows get the wrong color in one eye. UEVR's Native Stereo Fix does not apply (`[NativeStereoFix] Candidate eye pair rejected: family view is missing same-frame construction`), and Ghosting Fix was untested when this was written. Synchronized Sequential is the shipped default.

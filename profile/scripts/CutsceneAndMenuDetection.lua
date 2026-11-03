@@ -10,7 +10,7 @@ local switchRenderingMethod = false
 --                customization previews). Single render per tick, so no Synced Sequential frame-pair deadlock either.
 --   "native2d" = Native Stereo + 2D screen (previous attempt: no hang, but each eye got a different half of the menu).
 --   "extreme2" = same goal as "extreme", but SEQUENCED: UEVR only rebuilds its eye textures when the AFR state flips
---                (Synced/AFR/Extreme all count as "AFR"), so we step through Native Stereo first (AFR off -> rebuild),
+--                (Synced/AFR/Extreme all count as "AFR"), so it steps through Native Stereo first (AFR off -> rebuild),
 --                then switch Extreme+AFR on (AFR on -> rebuild again with the mono/window backbuffer). Leaving reverses it.
 -- menuMode is read from data/BL4_menu_mode.json ({"mode": "..."}) every second so it can be changed mid-game;
 -- the new mode applies at the NEXT menu open. Modes: "extreme2" | "native2d" | "native" (Native Stereo, no 2D screen)

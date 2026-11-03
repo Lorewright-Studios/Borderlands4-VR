@@ -49,7 +49,7 @@ WHAT THE PROFILE DOES (scripts in %APPDATA%\UnrealVRMod\Borderlands4\scripts)
                        The first-person arms stay hidden on purpose (showing them caused a right-eye flicker).
 - BL4_RecoilFix.lua    cancels the per-shot camera kick, pins camera yaw/roll and freezes camera position
                        while firing, so shooting never shakes or rotates your view.
-- CutsceneAndMenuDetection.lua   community script + our changes: while the ECHO/pause menu is open it
+- CutsceneAndMenuDetection.lua   community script + my changes: while the ECHO/pause menu is open it
                        switches UEVR to Native Stereo + 2D screen with the Lorewright build's "whole image in
                        both eyes" option; restores Synchronized Sequential on close. Also forces the correct
                        gameplay settings on every launch (UEVR otherwise saves whatever was live at exit).
@@ -65,7 +65,7 @@ TIPS
 - Problems? Send  %APPDATA%\UnrealVRMod\Borderlands4\log.txt  (overwritten every launch).
 
 CREDITS
-- UEVR by praydog; this package ships a build of joeyhodge's UEVR fork with a small addition
+- UEVR by praydog; this package ships a build of joeyhodge's UEVR fork with a small addition of mine
   (source: https://github.com/Lorewright-Studios/UEVR, branch bl4-menu-fullsource).
 - Launcher: UEVR Auto Inject by Lorewright Studios.
-- Profile scripts by Lorewright Studios (David Grosso), with Claude.
+- Profile scripts by David Grosso (Lorewright Studios).
